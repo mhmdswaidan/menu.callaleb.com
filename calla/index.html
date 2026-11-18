@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CALLA - Bakery • Cafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#EDF2F7;color:#1A2E44;font-family:'Poppins',sans-serif;padding:20px;padding-top:0}
+.header{text-align:center;padding:32px 10px 10px}
+.header h1{font-family:'Playfair Display',serif;font-size:68px;letter-spacing:14px;font-weight:700;color:#163A5E}
+.header p{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5A7FA6;margin-top:6px;letter-spacing:1px}
+.header span{display:block;font-family:'Poppins',sans-serif;font-style:normal;font-size:10px;letter-spacing:4px;color:#8AA8C2;margin-top:10px;font-weight:500;text-transform:uppercase}
+.sticky-nav{position:-webkit-sticky;position:sticky;top:0;z-index:1000;background:#EDF2F7;padding:12px 0 14px;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.top-btns{display:flex;justify-content:center;gap:12px;margin:0 0 12px}
+.top-btns button{font-family:'Poppins',sans-serif;padding:12px 28px;border-radius:30px;border:1px solid #163A5E;background:#fff;color:#163A5E;cursor:pointer;font-size:14px;letter-spacing:1px;font-weight:600}
+.top-btns button.active{background:#163A5E;color:#fff}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:0}
+.tabs button{font-family:'Poppins',sans-serif;padding:9px 16px;border-radius:20px;border:1px solid #C9DCEF;background:#fff;color:#163A5E;cursor:pointer;font-size:13px;font-weight:500}
+.tabs button.active{background:#163A5E;color:#fff;border-color:#163A5E;font-weight:600}
+.grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.header h1{font-size:44px}}
+.card{background:#163A5E;border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;box-shadow:0 6px 20px rgba(22,58,94,.25);-webkit-transform:translateZ(0);transform:translateZ(0)}
+.card img{width:92px;height:92px;object-fit:cover;border-radius:14px;background:#fff;flex-shrink:0}
+.card .info{flex:1;min-width:0}
+.card h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:5px}
+.card p{font-family:'Poppins',sans-serif;font-size:12.5px;color:#C9DCEF;line-height:1.5;font-weight:300}
+.price{font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;white-space:nowrap;color:#163A5E;background:#fff;padding:7px 12px;border-radius:20px;flex-shrink:0}
+.footer{text-align:center;margin:20px 0 10px;color:#163A5E;font-size:14px;line-height:2;font-family:'Poppins',sans-serif}
+.footer a{color:#163A5E;text-decoration:none;font-weight:bold}
+.footer .phone{font-size:16px;font-weight:600;letter-spacing:1px;margin-top:4px}
+.hidden{display:none}
+.blue-bar{max-width:1000px;margin:0 auto 10px;height:4px;background:linear-gradient(90deg,#163A5E,#5A9BD5,#A8C5E0);border-radius:10px}
+.location-box{max-width:1000px;margin:30px auto;text-align:center;background:#163A5E;color:#fff;padding:24px;border-radius:18px}
+.location-box h3{font-family:'Playfair Display',serif;letter-spacing:3px;margin-bottom:8px;font-size:22px}
+.location-box p{font-size:14px;opacity:.9;margin-bottom:6px;line-height:1.6}
+.location-box .phone{font-size:17px;font-weight:600;letter-spacing:1px;margin:10px 0 16px}
+.location-box a.btn{display:inline-block;background:#fff;color:#163A5E;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;font-size:14px}
+.location-box small{font-size:12px;opacity:.7;display:block;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="header"><h1>CALLA</h1><p>You are my everyday</p><span>Bakery • Cafe • Tyre</span></div>
+<div class="blue-bar"></div>
+<div class="sticky-nav">
+<div class="top-btns">
+<button class="active" onclick="showCat('bake',this)">BAKE HOUSE</button>
+<button onclick="showCat('coffee',this)">SPECIALITY COFFEE</button>
+</div>
+<div class="tabs" id="bakeTabs">
+<button class="active" onclick="filterItems('gateaux',this)">PETITS GATEAUX</button>
+<button onclick="filterItems('viennoiserie',this)">VIENNOISERIES</button>
+<button onclick="filterItems('travel',this)">TRAVEL CAKES</button>
+<button onclick="filterItems('cookies',this)">COOKIES</button>
+<button onclick="filterItems('soft',this)">SOFT SERVE</button>
+</div>
+<div class="tabs hidden" id="coffeeTabs">
+<button class="active" onclick="filterItems('hot',this)">HOT DRINKS</button>
+<button onclick="filterItems('cold',this)">COLD DRINKS</button>
+</div>
+</div>
+<div id="menu"></div>
+<div class="location-box">
+<h3>📍 FIND US</h3>
+<p>CALLA - Bakery • Cafe • Tyre, Lebanon<br>Open Daily • 7:30 AM – 11:30 PM</p>
+<p class="phone">📞 +961 71 200 147</p>
+<a class="btn" href="https://www.google.com/maps?q=33.2653996,35.2041311" target="_blank">GET DIRECTIONS →</a>
+<small>33.2653996, 35.2041311</small>
+</div>
+<div class="footer"><b>Open Daily • 7:30 AM – 11:30 PM</b><br>📍 Tyre, Lebanon<br><div class="phone">📞 +961 71 200 147</div><a href="https://instagram.com/calla_leb">@calla_leb</a> • menu.callalb.com<br><a href="https://www.google.com/maps?q=33.2653996,35.2041311" target="_blank">Get Directions on Google Maps →</a></div>
+<script>
+const items=[
+ {cat:'gateaux',name:'Classic Cruller',desc:'Light choux, vanilla glaze',price:'6.00 $',img:'images/01.jpg'},
+ {cat:'gateaux',name:'New York CheeseCake',desc:'Creamy, berry compote',price:'7.00 $',img:'images/02.jpg'},
+ {cat:'gateaux',name:'Eclair au Chocolat',desc:'Chocolate cream, glossy glaze',price:'6.00 $',img:'images/03.jpg'},
+ {cat:'gateaux',name:'Tart Velvet Chocolate',desc:'Velvet chocolate tart',price:'6.00 $',img:'images/04.jpg'},
+ {cat:'gateaux',name:'Tiramisu',desc:'Coffee, mascarpone, cocoa',price:'6.00 $',img:'images/05.jpg'},
+ {cat:'gateaux',name:'Rock & Roll',desc:'Signature chocolate roll',price:'6.00 $',img:'images/06.jpg'},
+ {cat:'gateaux',name:'Signature Millefeuille',desc:'Vanilla, crispy layers',price:'6.50 $',img:'images/07.jpg'},
+ {cat:'gateaux',name:'BlueBerry Tart',desc:'Blueberry, vanilla cream',price:'6.50 $',img:'images/08.jpg'},
+ {cat:'gateaux',name:'Harmony',desc:'Raspberry cloud, light cream',price:'6.50 $',img:'images/09.jpg'},
+ {cat:'gateaux',name:'Basque Cheesecake',desc:'Burnt top, creamy center',price:'6.50 $',img:'images/10.jpg'},
+ {cat:'gateaux',name:'Vanilla Chouquette - 4pcs',desc:'Caramel choux puffs',price:'5.00 $',img:'images/11.jpg'},
+ {cat:'gateaux',name:'Mango Trompe-l\'Oeil',desc:'Mango illusion cake',price:'7.00 $',img:'images/12.jpg'},
+ {cat:'gateaux',name:'Croissant Trompe-l\'Oeil',desc:'Croissant illusion',price:'9.00 $',img:'images/13.jpg'},
+ {cat:'gateaux',name:'NOVA (Gluten-Free)',desc:'Gluten-free signature',price:'8.00 $',img:'images/14.jpg'},
+ {cat:'viennoiserie',name:'Butter Croissant',desc:'Flaky, golden butter',price:'3.00 $',img:'images/15.jpg'},
+ {cat:'viennoiserie',name:'Almond Croissant',desc:'Almond cream, toasted',price:'5.00 $',img:'images/16.jpg'},
+ {cat:'viennoiserie',name:'Pain au Chocolat',desc:'Dark chocolate batons',price:'4.00 $',img:'images/17.jpg'},
+ {cat:'viennoiserie',name:'Pain Suisse Vanilla & Chocolate Chip',desc:'Only weekend',price:'5.00 $',img:'images/18.jpg'},
+ {cat:'viennoiserie',name:'Cinnamon Roll',desc:'Cinnamon, soft glaze',price:'5.00 $',img:'images/19.jpg'},
+ {cat:'viennoiserie',name:'Pistachio Chocolatine',desc:'Pistachio, chocolate',price:'6.00 $',img:'images/20.jpg'},
+ {cat:'viennoiserie',name:'Zaatar Brioche Feuilletee',desc:'Zaatar, flaky brioche',price:'4.00 $',img:'images/21.jpg'},
+ {cat:'viennoiserie',name:'Thyme Gruyere Croissant',desc:'Thyme, Gruyere cheese',price:'5.00 $',img:'images/22.jpg'},
+ {cat:'viennoiserie',name:'Turkey & Cheese Pain Suisse',desc:'Turkey, melted cheese',price:'6.00 $',img:'images/23.jpg'},
+ {cat:'viennoiserie',name:'Italian Puff',desc:'Only weekend',price:'4.50 $',img:'images/24.jpg'},
+ {cat:'travel',name:'Marble Cake',desc:'Chocolate & vanilla marble',price:'4.00 $',img:'images/25.jpg'},
+ {cat:'travel',name:'Lemon Cake',desc:'Lemon, soft crumb',price:'3.00 $',img:'images/26.jpg'},
+ {cat:'travel',name:'Bomboloni',desc:'Raspberry donut',price:'5.00 $',img:'images/27.jpg'},
+ {cat:'travel',name:'Brownie',desc:'Fudgy chocolate brownie',price:'6.00 $',img:'images/28.jpg'},
+ {cat:'cookies',name:'Triple Chocolate Cookies',desc:'Dark chocolate, sea salt',price:'3.50 $',img:'images/29.jpg'},
+ {cat:'cookies',name:'New York Chocolate Chip Walnut Cookie',desc:'Chunky, walnut, melted chocolate',price:'4.50 $',img:'images/30.jpg'},
+ {cat:'soft',name:'Fior Di Latte',desc:'Only summer - Vanilla soft serve',price:'6.00 $',img:'images/31.jpg'},
+ {cat:'soft',name:'Sicily Vanilla',desc:'Only summer - Olive oil soft serve',price:'6.00 $',img:'images/32.jpg'},
+ {cat:'hot',name:'Espresso',desc:'Single shot',price:'4.00 $',img:''},
+ {cat:'hot',name:'Americano',desc:'Espresso + hot water',price:'4.50 $',img:''},
+ {cat:'hot',name:'Cappuccino',desc:'Espresso, milk foam',price:'5.00 $',img:''},
+ {cat:'hot',name:'Maple Brown Butter Latte',desc:'Signature maple',price:'6.50 $',img:''},
+ {cat:'hot',name:'Tea Selection',desc:'Assorted teas',price:'3.00 $',img:''},
+ {cat:'hot',name:'Flat White',desc:'Double shot, velvet milk',price:'5.00 $',img:''},
+ {cat:'hot',name:'Calla Signature Hot Chocolate',desc:'Thick, rich chocolate',price:'8.00 $',img:''},
+ {cat:'hot',name:'Cortado',desc:'Espresso + steamed milk',price:'4.50 $',img:''},
+ {cat:'hot',name:'Cardamom Latte',desc:'Cardamom spice',price:'6.00 $',img:''},
+ {cat:'hot',name:'Piccolo',desc:'Small latte',price:'4.50 $',img:''},
+ {cat:'hot',name:'Matcha Special',desc:'Ceremonial matcha',price:'7.50 $',img:''},
+ {cat:'hot',name:'Latte',desc:'Espresso + milk',price:'5.00 $',img:''},
+ {cat:'hot',name:'Calla Special Latte',desc:'House special',price:'6.50 $',img:''},
+ {cat:'hot',name:'Caramel Latte',desc:'Caramel, milk',price:'5.50 $',img:''},
+ {cat:'hot',name:'Vanilla Latte Sugar Free',desc:'Sugar free vanilla',price:'5.50 $',img:''},
+ {cat:'hot',name:'V60',desc:'Pour over',price:'6.00 $',img:''},
+ {cat:'cold',name:'Iced Latte',desc:'Iced espresso + milk',price:'5.00 $',img:''},
+ {cat:'cold',name:'Iced Calla Special Latte',desc:'Iced house special',price:'6.50 $',img:''},
+ {cat:'cold',name:'Iced Caramel Latte',desc:'Iced caramel',price:'5.50 $',img:''},
+ {cat:'cold',name:'Iced Vanilla Latte Sugar Free',desc:'Iced sugar free',price:'5.50 $',img:''},
+ {cat:'cold',name:'Iced Matcha Special',desc:'Iced matcha',price:'7.50 $',img:''},
+ {cat:'cold',name:'Iced Americano',desc:'Iced espresso',price:'4.50 $',img:''},
+ {cat:'cold',name:'Iced V60',desc:'Iced pour over',price:'6.00 $',img:''},
+ {cat:'cold',name:'Four Seasons Refreshing',desc:'Fruity refresher',price:'6.00 $',img:''},
+ {cat:'cold',name:'Mango Passion Refreshing',desc:'Mango + passion',price:'8.00 $',img:''},
+ {cat:'cold',name:'Natural Fresh Orange',desc:'Fresh squeezed',price:'4.00 $',img:''},
+ {cat:'cold',name:'Still Water 330ml',desc:'',price:'2.00 $',img:''},
+ {cat:'cold',name:'Still Water 1L',desc:'',price:'4.00 $',img:''},
+ {cat:'cold',name:'Sparkling Water 330ml',desc:'',price:'3.00 $',img:''},
+ {cat:'cold',name:'Sparkling Water 1L',desc:'',price:'5.00 $',img:''},
+];
+let current='gateaux';
+function render(){
+ const list=items.filter(i=>i.cat===current);
+ document.getElementById('menu').innerHTML='<div class="grid">'+list.map(i=>`
+ <div class="card">
+ ${i.img ? `<img src="${i.img}" alt="${i.name}">` : ''}
+ <div class="info"><h3>${i.name}</h3><p>${i.desc}</p></div>
+ <div class="price">${i.price}</div>
+ </div>`).join('')+'</div>';
+}
+function filterItems(cat,btn){
+ current=cat;
+ document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ render();
+}
+function showCat(type,btn){
+ document.querySelectorAll('.top-btns button').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ if(type==='bake'){
+  document.getElementById('bakeTabs').classList.remove('hidden');
+  document.getElementById('coffeeTabs').classList.add('hidden');
+  current='gateaux';
+  document.querySelectorAll('#bakeTabs button').forEach((b,i)=>b.classList.toggle('active',i===0));
+ } else {
+  document.getElementById('bakeTabs').classList.add('hidden');
+  document.getElementById('coffeeTabs').classList.remove('hidden');
+  current='hot';
+  document.querySelectorAll('#coffeeTabs button').forEach((b,i)=>b.classList.toggle('active',i===0));
+ }
+ render();
+}
+render();
+</script>
+</body>
+</html>
