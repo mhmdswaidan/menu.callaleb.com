@@ -4,36 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CALLA - Bakery • Cafe</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#EDF2F7;color:#1A2E44;font-family:'Poppins',sans-serif;padding:20px;padding-top:0}
-.header{text-align:center;padding:32px 10px 10px}
-.header h1{font-family:'Playfair Display',serif;font-size:68px;letter-spacing:14px;font-weight:700;color:#163A5E}
-.header p{font-family:'Playfair Display',serif;font-style:italic;font-size:19px;color:#5A7FA6;margin-top:6px;letter-spacing:1px}
-.header span{display:block;font-family:'Poppins',sans-serif;font-style:normal;font-size:10px;letter-spacing:4px;color:#8AA8C2;margin-top:10px;font-weight:500;text-transform:uppercase}
-.sticky-nav{position:-webkit-sticky;position:sticky;top:0;z-index:1000;background:#EDF2F7;padding:12px 0 14px;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.top-btns{display:flex;justify-content:center;gap:12px;margin:0 0 12px}
-.top-btns button{font-family:'Poppins',sans-serif;padding:12px 28px;border-radius:30px;border:1px solid #163A5E;background:#fff;color:#163A5E;cursor:pointer;font-size:14px;letter-spacing:1px;font-weight:600}
-.top-btns button.active{background:#163A5E;color:#fff}
-.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:0}
-.tabs button{font-family:'Poppins',sans-serif;padding:9px 16px;border-radius:20px;border:1px solid #C9DCEF;background:#fff;color:#163A5E;cursor:pointer;font-size:13px;font-weight:500}
-.tabs button.active{background:#163A5E;color:#fff;border-color:#163A5E;font-weight:600}
-.grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
-@media(max-width:700px){.grid{grid-template-columns:1fr}.header h1{font-size:44px}}
-.card{background:#163A5E;border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;box-shadow:0 6px 20px rgba(22,58,94,.25);-webkit-transform:translateZ(0);transform:translateZ(0)}
-.card img{width:92px;height:92px;object-fit:cover;border-radius:14px;background:#fff;flex-shrink:0}
-.card .info{flex:1;min-width:0}
+body{background:radial-gradient(ellipse at 50% 0%, #1B3A5F 0%, #0A1B31 35%, #020814 100%);background-attachment:fixed;color:#fff;font-family:'Poppins',sans-serif;min-height:100vh}
+.stars-fixed{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.3);box-shadow:0 0 10px 2px rgba(255,255,255,.8)}}
+.shooting{position:fixed;width:90px;height:2px;background:linear-gradient(90deg,#fff,transparent);border-radius:10px;animation:shoot 6s linear infinite;opacity:0;z-index:0;pointer-events:none}
+@keyframes shoot{0%{transform:translateX(0) translateY(0) rotate(-25deg);opacity:0}5%{opacity:1}15%{transform:translateX(-350px) translateY(180px) rotate(-25deg);opacity:0}100%{opacity:0}}
+.hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 16px 10px}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:165px;font-weight:600;letter-spacing:28px;text-indent:28px;line-height:1;color:#fff;text-shadow:0 0 40px rgba(255,255,255,.4),0 20px 60px rgba(0,0,0,.6)}
+.hero .tag{font-family:'Playfair Display',serif;font-style:italic;font-size:34px;color:#E8F0F8;margin-top:12px}
+.hero .sub{font-size:14px;letter-spacing:8px;color:#9FB8D0;margin-top:18px;text-transform:uppercase;font-weight:500}
+.glow{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:560px;height:560px;background:radial-gradient(circle,rgba(90,155,213,.5) 0%,rgba(255,255,255,.15) 35%,transparent 70%);border-radius:50%;filter:blur(20px);z-index:1}
+.cup3d{position:relative;z-index:3;width:540px;max-width:94vw;height:440px;margin-top:-10px}
+model-viewer{width:100%;height:100%;--poster-color:transparent;cursor:grab;filter:drop-shadow(0 35px 45px rgba(0,0,0,.6));animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.scroll-explore{margin-top:5px;position:relative;z-index:10;text-align:center}
+.scroll-explore .txt{font-size:15px;letter-spacing:5px;color:#fff;font-weight:500;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.scroll-explore .arrow{font-size:26px;margin-top:6px;animation:bounce 1.8s ease-in-out infinite;display:block}
+@keyframes bounce{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(10px);opacity:1}}
+@media(max-width:700px){.hero h1{font-size:92px;letter-spacing:14px;text-indent:14px}.hero .tag{font-size:24px}.hero .sub{font-size:11px;letter-spacing:5px}.cup3d{height:320px}.glow{width:340px;height:340px}}
+.sticky-nav{position:-webkit-sticky;position:sticky;top:0;z-index:1000;background:rgba(2,8,20,.85);backdrop-filter:blur(12px);padding:14px 0 16px;border-bottom:1px solid rgba(255,255,255,.15)}
+/* KBSET FO2 - 3ADE - MA FI 3D */
+.top-btns{display:flex;justify-content:center;gap:12px;margin:0 0 14px}
+.top-btns button{font-family:'Poppins',sans-serif;padding:12px 28px;border-radius:30px;border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;cursor:pointer;font-size:14px;letter-spacing:1px;font-weight:600}
+.top-btns button.active{background:#fff;color:#163A5E}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.tabs button{font-family:'Poppins',sans-serif;padding:9px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:13px;font-weight:500}
+.tabs button.active{background:#fff;color:#163A5E;font-weight:600}
+.grid{position:relative;z-index:2;max-width:1000px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;padding:0 20px;perspective:1000px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+/* CARDS L TAHT - HONIK L 3D BASS */
+.card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;box-shadow:0 10px 25px rgba(0,0,0,.3);transition:transform .15s, box-shadow .15s;will-change:transform;overflow:hidden;touch-action:pan-y}
+.card img{width:92px;height:92px;object-fit:cover;border-radius:14px;background:#fff;flex-shrink:0;transform:none !important}
+.card .info{flex:1;min-width:0;transform:none !important}
 .card h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:5px}
 .card p{font-family:'Poppins',sans-serif;font-size:12.5px;color:#C9DCEF;line-height:1.5;font-weight:300}
-.price{font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;white-space:nowrap;color:#163A5E;background:#fff;padding:7px 12px;border-radius:20px;flex-shrink:0}
-.footer{text-align:center;margin:20px 0 10px;color:#163A5E;font-size:14px;line-height:2;font-family:'Poppins',sans-serif}
-.footer a{color:#163A5E;text-decoration:none;font-weight:bold}
+.price{font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;white-space:nowrap;color:#163A5E;background:#fff;padding:7px 12px;border-radius:20px;flex-shrink:0;transform:none !important}
+.footer{position:relative;z-index:2;text-align:center;margin:20px 0 10px;color:#fff;font-size:14px;line-height:2;padding:0 20px}
+.footer a{color:#fff;text-decoration:none;font-weight:bold}
 .footer .phone{font-size:16px;font-weight:600;letter-spacing:1px;margin-top:4px}
 .hidden{display:none}
-.blue-bar{max-width:1000px;margin:0 auto 10px;height:4px;background:linear-gradient(90deg,#163A5E,#5A9BD5,#A8C5E0);border-radius:10px}
-.location-box{max-width:1000px;margin:30px auto;text-align:center;background:#163A5E;color:#fff;padding:24px;border-radius:18px}
+.location-box{position:relative;z-index:2;max-width:1000px;margin:30px auto;text-align:center;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);color:#fff;padding:24px;border-radius:18px}
 .location-box h3{font-family:'Playfair Display',serif;letter-spacing:3px;margin-bottom:8px;font-size:22px}
 .location-box p{font-size:14px;opacity:.9;margin-bottom:6px;line-height:1.6}
 .location-box .phone{font-size:17px;font-weight:600;letter-spacing:1px;margin:10px 0 16px}
@@ -42,8 +58,18 @@ body{background:#EDF2F7;color:#1A2E44;font-family:'Poppins',sans-serif;padding:2
 </style>
 </head>
 <body>
-<div class="header"><h1>CALLA</h1><p>You are my everyday</p><span>Bakery • Cafe • Tyre</span></div>
-<div class="blue-bar"></div>
+<div class="stars-fixed" id="stars"></div>
+<div class="shooting" style="top:15%;right:10%"></div>
+<div class="shooting" style="top:45%;right:20%;animation-delay:2.5s"></div>
+<div class="shooting" style="top:70%;right:35%;animation-delay:4s"></div>
+<div class="hero" id="hero">
+<div class="glow"></div>
+<h1>CALLA</h1>
+<div class="tag">You are my everyday</div>
+<div class="sub">Bakery • Cafe • Tyre</div>
+<div class="cup3d"><model-viewer src="coffee.glb" alt="CALLA Coffee 3D" auto-rotate rotation-per-second="22deg" camera-controls auto-rotate-delay="0" shadow-intensity="1.2" exposure="1.25" camera-orbit="0deg 70deg 2.1m" field-of-view="35deg"></model-viewer></div>
+<div class="scroll-explore"><div class="txt">✦ SCROLL TO EXPLORE ✦</div><span class="arrow">↓</span></div>
+</div>
 <div class="sticky-nav">
 <div class="top-btns">
 <button class="active" onclick="showCat('bake',this)">BAKE HOUSE</button>
@@ -71,6 +97,8 @@ body{background:#EDF2F7;color:#1A2E44;font-family:'Poppins',sans-serif;padding:2
 </div>
 <div class="footer"><b>Open Daily • 7:30 AM – 11:30 PM</b><br>📍 Tyre, Lebanon<br><div class="phone">📞 +961 71 200 147</div><a href="https://instagram.com/calla_leb">@calla_leb</a> • menu.callaleb.com<br><a href="https://www.google.com/maps?q=33.2653996,35.2041311" target="_blank">Get Directions on Google Maps →</a></div>
 <script>
+const starsEl=document.getElementById('stars');
+for(let i=0;i<120;i++){const s=document.createElement('div');s.className='star';const size=Math.random()*3+1;s.style.width=size+'px';s.style.height=size+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.setProperty('--d',(Math.random()*3+2)+'s');s.style.animationDelay=(Math.random()*3)+'s';starsEl.appendChild(s);}
 const items=[
  {cat:'gateaux',name:'Classic Cruller',desc:'Light choux, vanilla glaze',price:'6.00 $',img:'images/01.jpg'},
  {cat:'gateaux',name:'New York CheeseCake',desc:'Creamy, berry compote',price:'7.00 $',img:'images/02.jpg'},
@@ -139,11 +167,12 @@ let current='gateaux';
 function render(){
  const list=items.filter(i=>i.cat===current);
  document.getElementById('menu').innerHTML='<div class="grid">'+list.map(i=>`
- <div class="card">
+ <div class="card tilt-card">
  ${i.img ? `<img src="${i.img}" alt="${i.name}">` : ''}
  <div class="info"><h3>${i.name}</h3><p>${i.desc}</p></div>
  <div class="price">${i.price}</div>
  </div>`).join('')+'</div>';
+ attachTilt();
 }
 function filterItems(cat,btn){
  current=cat;
@@ -166,6 +195,34 @@ function showCat(type,btn){
   document.querySelectorAll('#coffeeTabs button').forEach((b,i)=>b.classList.toggle('active',i===0));
  }
  render();
+}
+// 3D BASS 3A L CARDS L TAHT - MOUSE + TOUCH
+function attachTilt(){
+ document.querySelectorAll('.tilt-card').forEach(card=>{
+  // COMPUTER - MOUSE
+  card.addEventListener('mousemove',e=>{
+   const r=card.getBoundingClientRect();
+   const x=(e.clientX-r.left)/r.width-.5;
+   const y=(e.clientY-r.top)/r.height-.5;
+   card.style.transform=`perspective(900px) rotateY(${x*12}deg) rotateX(${-y*10}deg) scale(1.03)`;
+   card.style.boxShadow='0 25px 45px rgba(0,0,0,.5)';
+  });
+  card.addEventListener('mouseleave',()=>{
+   card.style.transform='perspective(900px) rotateY(0) rotateX(0) scale(1)';
+   card.style.boxShadow='0 10px 25px rgba(0,0,0,.3)';
+  });
+  // TELEFON - TOUCH
+  card.addEventListener('touchmove',e=>{
+   const t=e.touches[0];
+   const r=card.getBoundingClientRect();
+   const x=(t.clientX-r.left)/r.width-.5;
+   const y=(t.clientY-r.top)/r.height-.5;
+   card.style.transform=`perspective(900px) rotateY(${x*12}deg) rotateX(${-y*10}deg) scale(1.03)`;
+  },{passive:true});
+  card.addEventListener('touchend',()=>{
+   card.style.transform='perspective(900px) rotateY(0) rotateX(0) scale(1)';
+  });
+ });
 }
 render();
 </script>
